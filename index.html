@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator Segitiga</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js"></script>
+</head>
+
+<body>
+    <h1>Hitung segitiga</h1>
+    <form id="segitiga-form" name="hitung-segitiga" action="javascript:processForm();" method="GET">
+        <div class="input">
+            <label for="sisi1" class="input-label">Panjang sisi 1</label> 
+            <br>
+            <input id="sisi1" name="sisi1" class="input-segitiga" type="number">
+            <br> <br>
+        </div>
+        <div class="input">
+            <label for="sisi2" class="input-label">Panjang sisi 2</label> 
+            <br>
+            <input id="sisi2" name="sisi2" class="input-segitiga" type="number">
+            <br> <br>
+        </div>
+        <div class="input">
+            <label for="sisi3" class="input-label">Panjang sisi 3</label> 
+            <br>
+            <input id="sisi3" name="sisi3" class="input-segitiga" type="number">
+            <br> <br>
+        </div>
+        <div class="input option">
+            <label for="sisi3" class="input-label">Hitung Luas atau Keliling?</label> 
+            <br>
+            <select name="operation-type" id="luas-atau-keliling">
+                <option value="luas">Luas</option>
+                <option value="keliling">Keliling</option>
+            </select>
+            <br> <br>
+        </div>
+
+        <button type="submit">Hitung</button>
+    </form>
+
+    <div id="result"></div>
+</body>
+</html>
