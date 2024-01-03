@@ -32,17 +32,17 @@ function processForm(){
         let operationType = document.forms["hitung-segitiga"]["operation-type"].value;
         if(operationType === "luas"){
             const luas = calculateArea(sisi1Num, sisi2Num, sisi3Num);
-            messagePayload = `<p>Luas segitiga berikut adalah ${luas}</p>`;
+            messagePayload = `Luas segitiga berikut adalah ${luas}`;
         } else if(operationType === "keliling"){
             const keliling = calculatePerimeter(sisi1Num, sisi2Num, sisi3Num);
-            messagePayload = `<p>Keliling segitiga berikut adalah ${keliling}</p>`;
+            messagePayload = `Keliling segitiga berikut adalah ${keliling}`;
         } else {
-            messagePayload = "<p>Jenis operasi tidak diketahui</p>";
+            messagePayload = "Jenis operasi tidak diketahui";
         }
     }
 
 
-    document.getElementById("result").innerHTML = messagePayload;
+    document.getElementById("result").innerHTML = makeMessageElement(messagePayload);
 }
 
 function validateParam(paramVal){
@@ -50,8 +50,8 @@ function validateParam(paramVal){
     return res;
 }
 
-function makeErrorMessageElement(message){
-    return `<p>${message}</p>`
+function makeMessageElement(message){
+    return `<p class="text response">${message}</p>`
 }
 
 function calculatePerimeter(a, b, c){

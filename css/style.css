@@ -1,3 +1,7 @@
 .input .input-label {
     color: purple;
 }
+
+.response {
+    color: blue;
+}
