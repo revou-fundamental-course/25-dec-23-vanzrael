@@ -5,26 +5,36 @@
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js"></script>
 </head>
-
 <body>
-    <h1>Hitung segitiga</h1>
+    <h1>Hitung luas/keliling segitiga</h1>
+    <div id="pengantar">
+        <img src="./assets/triangle_abc.jpg">
+        <div id="pengantar-keliling">
+            <p>Keliling segitiga: <b>K</b> = <b>a</b> + <b>b</b> + <b>c</b></p>
+        </div>
+        <div id="pengantar-luas">
+            <p>Luas segitiga: </p>
+            <p><b>s</b> = <b>K</b> / 2</p>
+            <p><b>L</b> = sqrt(<b>s</b> * (<b>s</b> - <b>a</b>) * (<b>s</b> - <b>b</b>)  * (<b>s</b> - <b>c</b>))</p>
+        </div>
+    </div>
     <form id="segitiga-form" name="hitung-segitiga" action="javascript:processForm();" method="GET">
         <div class="input">
             <label for="sisi1" class="input-label">Panjang sisi 1</label> 
             <br>
-            <input id="sisi1" name="sisi1" class="input-segitiga" type="number">
+            <input id="sisi1" name="sisi1" class="input-segitiga" type="text">
             <br> <br>
         </div>
         <div class="input">
             <label for="sisi2" class="input-label">Panjang sisi 2</label> 
             <br>
-            <input id="sisi2" name="sisi2" class="input-segitiga" type="number">
+            <input id="sisi2" name="sisi2" class="input-segitiga" type="text">
             <br> <br>
         </div>
         <div class="input">
             <label for="sisi3" class="input-label">Panjang sisi 3</label> 
             <br>
-            <input id="sisi3" name="sisi3" class="input-segitiga" type="number">
+            <input id="sisi3" name="sisi3" class="input-segitiga" type="text">
             <br> <br>
         </div>
         <div class="input option">
