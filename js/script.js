@@ -9,35 +9,35 @@ function processForm(){
     let sisi1ValidateRes = validateParam(sisi1, "Sisi <b>a</b>");
     if(sisi1ValidateRes.status === false){
         status = false;
-        messagePayload = messagePayload + makeMessageElement(sisi1ValidateRes.message);
+        messagePayload = messagePayload + makeMessageElement(sisi1ValidateRes.message, "response-error");
     }
 
     let sisi2ValidateRes = validateParam(sisi2, "Sisi <b>b</b>");
     if(sisi2ValidateRes.status === false){
         status = false;
-        messagePayload = messagePayload + makeMessageElement(sisi2ValidateRes.message);
+        messagePayload = messagePayload + makeMessageElement(sisi2ValidateRes.message, "response-error");
     }
 
     let sisi3ValidateRes = validateParam(sisi3, "Sisi <b>c</b>");
     if(sisi3ValidateRes.status === false){
         status = false;
-        messagePayload = messagePayload + makeMessageElement(sisi3ValidateRes.message);
+        messagePayload = messagePayload + makeMessageElement(sisi3ValidateRes.message, "response-error");
     }
 
     if(status === true){
         const sisi1Num = parseFloat(sisi1);
-        messagePayload = messagePayload + makeMessageElement(`<b>a</b> = ${sisi1Num}`);
+        messagePayload = messagePayload + makeMessageElement(`<b>a</b> = ${sisi1Num}`, "response-success");
 
         const sisi2Num = parseFloat(sisi2);
-        messagePayload = messagePayload + makeMessageElement(`<b>b</b> = ${sisi2Num}`);
+        messagePayload = messagePayload + makeMessageElement(`<b>b</b> = ${sisi2Num}`, "response-success");
 
         const sisi3Num = parseFloat(sisi3);
-        messagePayload = messagePayload + makeMessageElement(`<b>c</b> = ${sisi3Num}`);
+        messagePayload = messagePayload + makeMessageElement(`<b>c</b> = ${sisi3Num}`, "response-success");
 
         const isSegitiga = isTriangle(sisi1Num, sisi2Num, sisi3Num);
         if(isSegitiga === false){
             status = false;
-            messagePayload = messagePayload + makeMessageElement("Nilai sisi <b>a</b>, sisi <b>b</b>, dan sisi <b>c</b> tidak membentuk segitiga");
+            messagePayload = messagePayload + makeMessageElement("Nilai sisi <b>a</b>, sisi <b>b</b>, dan sisi <b>c</b> tidak membentuk segitiga", "response-error");
         } else {
             let operationType = document.forms["hitung-segitiga"]["operation-type"].value;
             if(operationType === "luas"){
@@ -45,13 +45,19 @@ function processForm(){
             } else if(operationType === "keliling"){
                 messagePayload = messagePayload + calculatePerimeterFullReport(sisi1Num, sisi2Num, sisi3Num);
             } else {
-                messagePayload = makeMessageElement(`Jenis operasi <i>${operationType}</i> tidak diketahui`);
+                messagePayload = makeMessageElement(`Jenis operasi <i>${operationType}</i> tidak diketahui`, "response-error");
             }
         }
         
     }
 
     document.getElementById("result").innerHTML = messagePayload;
+}
+
+function resetForm(){
+    const defaultMessageCalc = makeMessageElement("Langkah-langkah kalkulasi akan ditampilkan di bagian ini", "placeholder");
+    document.getElementById("segitiga-form").reset();
+    document.getElementById("result").innerHTML = defaultMessageCalc;
 }
 
 function isTriangle(a, b, c){
@@ -100,8 +106,8 @@ function validateParam(paramVal, paramName){
     return res;
 }
 
-function makeMessageElement(message){
-    return `<p class="text response">${message}</p>`
+function makeMessageElement(message, messageType){
+    return `<p class="text ${messageType}">${message}</p>`
 }
 
 function calculatePerimeter(a, b, c){
@@ -109,11 +115,11 @@ function calculatePerimeter(a, b, c){
 }
 
 function calculatePerimeterHTML(a, b, c){
-    messagePayload = makeMessageElement("<b>K</b> = <b>a</b> + <b>b</b> + <b>c</b>");
-    messagePayload += makeMessageElement(`<b>K</b> = ${a} + ${b} + ${c}`);
+    messagePayload = makeMessageElement("<b>K</b> = <b>a</b> + <b>b</b> + <b>c</b>", "response-success");
+    messagePayload += makeMessageElement(`<b>K</b> = ${a} + ${b} + ${c}`, "response-success");
 
     const perim = calculatePerimeter(a, b, c);
-    messagePayload += makeMessageElement(`<b>K</b> = ${perim}`);
+    messagePayload += makeMessageElement(`<b>K</b> = ${perim}`, "response-success");
 
     const res = {value: perim, htmlPayload: messagePayload};
     return res;
@@ -124,7 +130,7 @@ function calculatePerimeterFullReport(a, b, c){
     let perimHTML = perimPayload.htmlPayload;
     const perimVal = perimPayload.value;
 
-    perimHTML += makeMessageElement(`Keliling segitiga berikut adalah ${perimVal}`);
+    perimHTML += makeMessageElement(`<b>Keliling segitiga berikut adalah ${perimVal}</b>`, "response-success");
     return perimHTML;
 }
 
@@ -141,27 +147,27 @@ function calculateAreaFullReport(a, b, c){
     const perimVal = perimPayload.value;
 
     let messagePayload = perimHTML;
-    messagePayload += makeMessageElement("<b>S</b> = <b>K</b> / 2");
-    messagePayload += makeMessageElement(`<b>S</b> = ${perimVal} / 2`);
+    messagePayload += makeMessageElement("<b>s</b> = <b>K</b> / 2", "response-success");
+    messagePayload += makeMessageElement(`<b>s</b> = ${perimVal} / 2`, "response-success");
 
     let halfPerim = perimVal / 2.0;
-    messagePayload += makeMessageElement(`<b>S</b> = ${halfPerim}`);
+    messagePayload += makeMessageElement(`<b>s</b> = ${halfPerim}`,"response-success");
 
-    messagePayload += makeMessageElement("<b>L</b> = sqrt(<b>S</b> * (<b>S</b> - <b>a</b>) * (<b>S</b> - <b>b</b>) * (<b>S</b> - <b>c</b>))");
-    messagePayload += makeMessageElement(`<b>L</b> = sqrt(${halfPerim} * (${halfPerim} - ${a}) * (${halfPerim} - ${b}) * (${halfPerim} - ${c})`);
+    messagePayload += makeMessageElement("<b>L</b> = sqrt(<b>s</b> * (<b>s</b> - <b>a</b>) * (<b>s</b> - <b>b</b>) * (<b>s</b> - <b>c</b>))", "response-success");
+    messagePayload += makeMessageElement(`<b>L</b> = sqrt(${halfPerim} * (${halfPerim} - ${a}) * (${halfPerim} - ${b}) * (${halfPerim} - ${c})`, "response-success");
 
     const halfPerimMinA = halfPerim - a;
     const halfPerimMinB = halfPerim - b;
     const halfPerimMinC = halfPerim - c;
 
-    messagePayload += makeMessageElement(`<b>L</b> = sqrt(${halfPerim} * ${halfPerimMinA} * ${halfPerimMinB} * ${halfPerimMinC}`);
+    messagePayload += makeMessageElement(`<b>L</b> = sqrt(${halfPerim} * ${halfPerimMinA} * ${halfPerimMinB} * ${halfPerimMinC})`, "response-success");
 
     const areaProduct = halfPerim * halfPerimMinA * halfPerimMinB * halfPerimMinC;
-    messagePayload += makeMessageElement(`<b>L</b> = sqrt(${areaProduct})`);
+    messagePayload += makeMessageElement(`<b>L</b> = sqrt(${areaProduct})`, "response-success");
 
     const areaFinal = Math.sqrt(areaProduct);
-    messagePayload += makeMessageElement(`<b>L</b> = ${areaFinal}`);
-    messagePayload += makeMessageElement(`Luas segitiga berikut adalah ${areaFinal}`);
+    messagePayload += makeMessageElement(`<b>L</b> = ${areaFinal}`, "response-success");
+    messagePayload += makeMessageElement(`<b>Luas segitiga berikut adalah ${areaFinal}</b>`, "response-success");
 
     return messagePayload;
 }

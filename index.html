@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Kalkulator Segitiga</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/script.js"></script>
 </head>
+
 <body>
-    <h1>Hitung luas/keliling segitiga</h1>
-    <div id="pengantar">
-        <img src="./assets/triangle_abc.jpg">
-        <div id="pengantar-keliling">
-            <p>Keliling segitiga: <b>K</b> = <b>a</b> + <b>b</b> + <b>c</b></p>
+    <div class="row row-header">
+        <h1 class="header text">Hitung luas/keliling segitiga</h1>
+    </div>
+    <div class="row container">
+        <div class="column column-main">
+            <div class="row image-row">
+                <img src="./assets/triangle_abc.jpg" alt="segitiga" width="500px">
+            </div>
+            <div class="row">
+                <div class="column outlined-column">
+                    <div id="pengantar" class="section">
+                        <div id="pengantar-keliling">
+                            <h3>Rumus Keliling Segitiga</h3>
+                            <p><b>K</b> = <b>a</b> + <b>b</b> + <b>c</b></p>
+                        </div>
+                        <div id="pengantar-luas">
+                            <h3>Luas segitiga: </h3>
+                            <p><b>s</b> = <b>K</b> / 2</p>
+                            <p><b>L</b> = sqrt(<b>s</b> * (<b>s</b> - <b>a</b>) * (<b>s</b> - <b>b</b>) * (<b>s</b> -
+                                <b>c</b>))
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column outlined-column">
+                    <div class="section" id="form-div1">
+                        <form id="segitiga-form" name="hitung-segitiga" action="javascript:processForm();" method="GET">
+                            <div class="input">
+                                <label for="sisi1" class="input-label">Panjang sisi <b>a</b></label>
+                                <input id="sisi1" name="sisi1" class="input-segitiga" type="text">
+                            </div>
+                            <div class="input">
+                                <label for="sisi2" class="input-label">Panjang sisi <b>b</b></label>
+                                <input id="sisi2" name="sisi2" class="input-segitiga" type="text">
+                            </div>
+                            <div class="input">
+                                <label for="sisi3" class="input-label">Panjang sisi <b>c</b></label>
+                                <input id="sisi3" name="sisi3" class="input-segitiga" type="text">
+                            </div>
+                            <div class="input option">
+                                <label for="sisi3" class="input-label">Hitung Luas atau Keliling?</label>
+                                <select class="input-segitiga" name="operation-type" id="luas-atau-keliling">
+                                    <option value="luas">Luas</option>
+                                    <option value="keliling">Keliling</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <input id="button-reset" class="button reset" type="button" onclick="resetForm()" value="Reset">
+                                </div>
+                                <div class="column">
+                                    <button id="button-submit"class="button submit" type="submit">Hitung</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="pengantar-luas">
-            <p>Luas segitiga: </p>
-            <p><b>s</b> = <b>K</b> / 2</p>
-            <p><b>L</b> = sqrt(<b>s</b> * (<b>s</b> - <b>a</b>) * (<b>s</b> - <b>b</b>)  * (<b>s</b> - <b>c</b>))</p>
+        <div class="column calculation outlined-column">
+            <div id="result" class="section">
+                <p class="text placeholder">Langkah-langkah kalkulasi akan ditampilkan di bagian ini</p>
+            </div>
         </div>
     </div>
-    <form id="segitiga-form" name="hitung-segitiga" action="javascript:processForm();" method="GET">
-        <div class="input">
-            <label for="sisi1" class="input-label">Panjang sisi 1</label> 
-            <br>
-            <input id="sisi1" name="sisi1" class="input-segitiga" type="text">
-            <br> <br>
-        </div>
-        <div class="input">
-            <label for="sisi2" class="input-label">Panjang sisi 2</label> 
-            <br>
-            <input id="sisi2" name="sisi2" class="input-segitiga" type="text">
-            <br> <br>
-        </div>
-        <div class="input">
-            <label for="sisi3" class="input-label">Panjang sisi 3</label> 
-            <br>
-            <input id="sisi3" name="sisi3" class="input-segitiga" type="text">
-            <br> <br>
-        </div>
-        <div class="input option">
-            <label for="sisi3" class="input-label">Hitung Luas atau Keliling?</label> 
-            <br>
-            <select name="operation-type" id="luas-atau-keliling">
-                <option value="luas">Luas</option>
-                <option value="keliling">Keliling</option>
-            </select>
-            <br> <br>
-        </div>
-
-        <button type="submit">Hitung</button>
-    </form>
-
-    <div id="result"></div>
 </body>
+
 </html>

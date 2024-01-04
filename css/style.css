@@ -1,11 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap');
+* {
+    font-family: 'Inter Tight', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
 #pengantar {
     background-color: white;
 }
 
-.input .input-label {
-    color: purple;
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
 }
 
-.response {
-    color: blue;
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.input-segitiga {
+    border-radius: 8px;
+    border: 1px solid grey;
+    padding-block: 5px;
+}
+
+.header {
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-size: 1.5em;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    /* border: 1px solid blue; */
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.column {
+    flex: auto;
+}
+
+.row-header {
+    background-color: black;
+    margin-bottom: 1em;
+}
+
+.response-success {
+    color:navy;
+}
+
+.response-error {
+    color: firebrick;
+}
+
+.input-label {
+    font-size: 0.8em;
+    margin-bottom: 4px;
+}
+
+#luas-atau-keliling {
+    width: 100%;
+    text-align: center;
+}
+
+#placeholder {
+    font-size: 24px;
+}
+
+.button {
+    background-color: white;
+    width: 100%;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#button-submit {
+    border-color: navy;
+    color: navy;
+}
+
+#button-reset {
+    border-color: firebrick;
+    color: firebrick;
+}
+
+.calculation {
+    width: 20%;
+}
+
+.outlined-column {
+    border: 2px solid grey;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+/* .column-main {
+    margin-right: 50px;
+} */
+
+.image-row {
+    justify-content: center;
 }
